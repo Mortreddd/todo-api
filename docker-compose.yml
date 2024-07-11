@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  task-service:
+    build: .
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/todo_tasks?allowPublicKeyRetrieval=true&createDatabaseIfNotExists=true
+      SPRING_DATASOURCE_DDL_AUTO: UPDATE
+      SPRING_DATASOURCE_PASSWORD: 12345678
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
+      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.MySQLDialect
+      SPRING_JPA_SHOW_SQL: "true"
+      SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL: "true"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345678
+      MYSQL_DATABASE: todo_tasks
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 12345678
+    ports:
+      - "3307:3306"
