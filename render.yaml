@@ -28,5 +28,4 @@ services:
 
 databases:
   - name: todo-tasks-db
-    type: mysql
     plan: free  # Adjust as necessary
