@@ -1,7 +1,7 @@
 services:
   - type: web
     name: task-service
-    env: docker
+    runtime: docker
     plan: free  # Adjust as necessary
     dockerfilePath: ./Dockerfile
     envVars:
@@ -12,7 +12,7 @@ services:
       - key: SPRING_DATASOURCE_USERNAME
         fromDatabase:
           name: todo-tasks-db
-          property: username
+          property: user
       - key: SPRING_DATASOURCE_PASSWORD
         fromDatabase:
           name: todo-tasks-db
@@ -28,4 +28,7 @@ services:
 
 databases:
   - name: todo-tasks-db
-    plan: free  # Adjust as necessary
+    databaseName: todo_tasks
+    plan: free
+    user: emmanuel
+
