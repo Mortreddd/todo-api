@@ -8,7 +8,7 @@ services:
       - key: SPRING_DATASOURCE_URL
         fromDatabase:
           name: todo-tasks-db
-          property: jdbc:postgresql://dpg-cq9106jv2p9s73cbp2fg-a:5432/todo_tasks_uayo?allowPublicKeyRetrieval=true&createDatabaseIfNotExists=true
+          property: jdbc:postgresql://dpg-cq9106jv2p9s73cbp2fg-a.oregon-postgres.render.com/todo_tasks_uayo?allowPublicKeyRetrieval=true&createDatabaseIfNotExists=true
       - key: SPRING_DATASOURCE_USERNAME
         fromDatabase:
           name: todo-tasks-db
@@ -24,6 +24,8 @@ services:
       - key: SPRING_JPA_SHOW_SQL
         value: "true"
       - key: SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL
+        value: "true"
+      - key: SPRING_MAIN_ALLOWED_BEAN_DEFINITION_OVERRIDING
         value: "true"
 
 databases:
