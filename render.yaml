@@ -10,15 +10,17 @@ services:
           name: todo-tasks-db
           property: connectionString
       - key: SPRING_DATASOURCE_USERNAME
-        value: emmanuel
+        fromDatabase:
+          name: todo-tasks-db
+          property: username
       - key: SPRING_DATASOURCE_PASSWORD
         fromDatabase:
           name: todo-tasks-db
           property: password
       - key: SPRING_DATASOURCE_DRIVER_CLASS_NAME
-        value: com.mysql.cj.jdbc.Driver
+        value: org.postgresql.Driver
       - key: SPRING_JPA_DATABASE_PLATFORM
-        value: org.hibernate.dialect.MySQLDialect
+        value: org.hibernate.dialect.PostgreSQLDialect
       - key: SPRING_JPA_SHOW_SQL
         value: "true"
       - key: SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL
