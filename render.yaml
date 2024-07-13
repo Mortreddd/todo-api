@@ -6,9 +6,7 @@ services:
     dockerfilePath: ./Dockerfile
     envVars:
       - key: SPRING_DATASOURCE_URL
-        fromDatabase:
-          name: todo-tasks-db
-          property: jdbc:postgresql://dpg-cq9106jv2p9s73cbp2fg-a.oregon-postgres.render.com/todo_tasks_uayo?allowPublicKeyRetrieval=true&createDatabaseIfNotExists=true
+        value: jdbc:postgresql://dpg-cq9106jv2p9s73cbp2fg-a.oregon-postgres.render.com/todo_tasks_uayo?allowPublicKeyRetrieval=true&createDatabaseIfNotExists=true
       - key: SPRING_DATASOURCE_USERNAME
         fromDatabase:
           name: todo-tasks-db
