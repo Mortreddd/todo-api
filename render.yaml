@@ -6,21 +6,15 @@ services:
     dockerfilePath: ./Dockerfile
     envVars:
       - key: SPRING_DATASOURCE_URL
-        fromDatabase:
-          name: todo-tasks-db
-          property: connectionString
+        value: postgresql://emmanuel:U71bj8kbdb5rXJOLIepdKB3yi0j1qvyo@dpg-cq9106jv2p9s73cbp2fg-a/todo_tasks_uayo
       - key: SPRING_DATASOURCE_USERNAME
-        fromDatabase:
-          name: todo-tasks-db
-          property: user
+        value: emmanuel
       - key: SPRING_DATASOURCE_PASSWORD
-        fromDatabase:
-          name: todo-tasks-db
-          property: password
+        value: U71bj8kbdb5rXJOLIepdKB3yi0j1qvyo
       - key: SPRING_DATASOURCE_DRIVER_CLASS_NAME
-        value: com.mysql.cj.jdbc.Driver
+        value: org.postgresql.Driver
       - key: SPRING_JPA_DATABASE_PLATFORM
-        value: org.hibernate.dialect.MySQLDialect
+        value: org.hibernate.dialect.PostgreSQLDialect
       - key: SPRING_JPA_SHOW_SQL
         value: "true"
       - key: SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL

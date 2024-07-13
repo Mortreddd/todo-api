@@ -4,12 +4,12 @@ services:
   task-service:
     build: .
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/todo_tasks?allowPublicKeyRetrieval=true&createDatabaseIfNotExists=true
-      SPRING_DATASOURCE_DDL_AUTO: UPDATE
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/todo_tasks?allowPublicKeyRetrieval=true&createDatabaseIfNotExists=true
+      SPRING_DATASOURCE_DDL_AUTO: update
       SPRING_DATASOURCE_PASSWORD: 12345678
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
-      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.MySQLDialect
+      SPRING_DATASOURCE_USERNAME: emmanuel
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.postgresql.Driver
+      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.PostgreSQLDialect
       SPRING_JPA_SHOW_SQL: "true"
       SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL: "true"
     ports:
@@ -19,16 +19,16 @@ services:
         condition: service_healthy
 
   db:
-    image: mysql:latest
+    image: postgres:latest
     environment:
-      MYSQL_ROOT_PASSWORD: 12345678
-      MYSQL_DATABASE: todo_tasks
-      MYSQL_USER: root
-      MYSQL_PASSWORD: 12345678
+      POSTGRES_DB: todo_tasks
+      POSTGRES_USER: emmanuel
+      POSTGRES_PASSWORD: 12345678
+      POSTGRES_INITDB_ARGS: "-A password"  # Initialization with password
     ports:
-      - "3307:3306"
+      - "5432:5432"
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      test: [ "CMD", "pg_isready", "-U", "emmanuel" ]
       interval: 10s
       timeout: 5s
       retries: 5
